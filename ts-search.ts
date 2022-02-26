@@ -17,6 +17,9 @@ type SearchField = {
  * will therefore remain synced with the user typing.
  * ------------------------------------------
  * @license GNU
+ * @todo
+ * - Zip code logic
+ * - ~
  *
  * @param - User's current search field value(s)
  *
@@ -51,6 +54,16 @@ async function getApplicableDataAsync({
     ) {
       applicableSearchResults.push(coachData);
     }
+
+    /**
+     * Zip code will need some more logic to check what's considered "close"
+     * for a zip code. Shouldn't be hard from the description below.
+     *
+     * ZIP Codes are numbered with the first digit representing a certain group
+     * of U.S. states, the second and third digits together representing a region
+     * in that group (or perhaps a large city) and the fourth and fifth digits
+     * representing a group of delivery addresses within that region.
+     */
     if (coachZip.includes(zip)) {
       applicableSearchResults.push(coachData);
     }
