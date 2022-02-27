@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="get" id="form">
+      <div id="name">
+        <label for="name">Enter your name: </label>
+        <input id="name-input" type="text" name="name" required />
+      </div>
+      <div id="special">
+        <label for="special">Enter your area of need: </label>
+        <input type="special" name="special" id="special" required />
+      </div>
+      <div id="zip">
+        <label for="zip">Enter your zip-code: </label>
+        <input type="number" name="zip" id="zip" required />
+      </div>
+      <div id="exp">
+        <label for="exp">Enter your desired experience: </label>
+        <input type="number" name="exp" id="exp" required />
+      </div>
+      <div id="search">
+        <input type="submit" value="Search" />
+      </div>
+    </form>
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>
