@@ -1,0 +1,29 @@
+{
+  "name": "project",
+  "version": "0.0.1",
+  "description": "TypeScript directory search",
+  "main": "index.js",
+  "scripts": {
+    "compile": "bash ./exec/compile.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RamosThomas/isei-search-directory.git"
+  },
+  "keywords": [
+    "ts"
+  ],
+  "author": "Edward Thomas",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/RamosThomas/isei-search-directory/issues"
+  },
+  "homepage": "https://github.com/RamosThomas/isei-search-directory#readme",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21"
+  }
+}
