@@ -31,7 +31,6 @@ async function getApplicableDataAsync({
 }: SearchField): Promise<SearchField[]> {
   // Need some way of getting all data (API -> (database, server, etc.), hardcoded in a file)
   const allCoachData: SearchField[] = demo_data.coaches;
-  console.log(allCoachData);
   const applicableSearchResults: SearchField[] = allCoachData.filter(
     (coachData: SearchField) => {
       const {
@@ -49,7 +48,6 @@ async function getApplicableDataAsync({
         ) {
           return true;
         }
-        console.log(coachSpecialization, specialization);
         if (
           specialization &&
           coachSpecialization &&
