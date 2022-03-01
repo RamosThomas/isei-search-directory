@@ -261,7 +261,7 @@ module.exports={
                 "Business",
                 "Life"
             ],
-            "zip": "32808",
+            "zip": "80634",
             "yearsOfExperience": 10
         },
         {
