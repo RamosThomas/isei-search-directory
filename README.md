@@ -23,6 +23,8 @@ Search component for data.
 
 ### 4.) Open browser of choice to `localhost:3000/`
 
+C:\Users\kedwa\Desktop\demo-folder\isei-search-directory\docs\SearchFieldVideo.mp4
+
 ---
 
 ## Potential Errors
