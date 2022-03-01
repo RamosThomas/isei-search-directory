@@ -23,6 +23,8 @@ Search component for data.
 
 ### 4.) Open browser of choice to `localhost:3000/`
 
+[Video demo](https://raw.githubusercontent.com/RamosThomas/isei-search-directory/main/docs/SearchFieldVideo.mp4)
+
 ---
 
 ## Potential Errors
