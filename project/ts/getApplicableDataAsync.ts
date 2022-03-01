@@ -1,9 +1,5 @@
-type SearchField = {
-  name?: string;
-  specialization?: string[];
-  zip?: string; // Could be represented as an integer but how to preform comparison
-  yearsOfExperience?: number;
-};
+import { SearchField } from "./types";
+import demo_data from "./test-data.json";
 
 /**
  * Function for getting the applicable data based on parameters
@@ -34,56 +30,59 @@ async function getApplicableDataAsync({
   yearsOfExperience,
 }: SearchField): Promise<SearchField[]> {
   // Need some way of getting all data (API -> (database, server, etc.), hardcoded in a file)
-  const allCoachData: SearchField[] | null = await [
-    {
-      name: "Amy Sargent",
-      specialization: ["Family"],
-      zip: "80634",
-      yearsOfExperience: 5,
-    },
-  ];
-  const applicableSearchResults: SearchField[] = [];
+  const allCoachData: SearchField[] = demo_data.coaches;
+  console.log(allCoachData);
+  const applicableSearchResults: SearchField[] = allCoachData.filter(
+    (coachData: SearchField) => {
+      const {
+        name: coachName,
+        specialization: coachSpecialization,
+        zip: coachZip,
+        yearsOfExperience: coachYearsOfExperience,
+      } = coachData;
+      // May need a try/catch block for `null` parameters
+      try {
+        if (
+          coachName &&
+          name &&
+          coachName.toLowerCase().includes(name.toLowerCase())
+        ) {
+          return true;
+        }
+        console.log(coachSpecialization, specialization);
+        if (
+          specialization &&
+          coachSpecialization &&
+          coachSpecialization.some((r) => specialization.includes(r))
+        ) {
+          return true;
+        }
 
-  allCoachData.map((coachData: SearchField) => {
-    const {
-      name: coachName,
-      specialization: coachSpecialization,
-      zip: coachZip,
-      yearsOfExperience: coachYearsOfExperience,
-    } = coachData;
-    // May need a try/catch block for `null` parameters
-
-    if (coachName && name && coachName.includes(name)) {
-      applicableSearchResults.push(coachData);
+        /**
+         * Zip code will need some more logic to check what's considered "close"
+         * for a zip code. Shouldn't be hard from the description below.
+         *
+         * ZIP Codes are numbered with the first digit representing a certain group
+         * of U.S. states, the second and third digits together representing a region
+         * in that group (or perhaps a large city) and the fourth and fifth digits
+         * representing a group of delivery addresses within that region.
+         */
+        if (coachZip && zip && coachZip.includes(zip)) {
+          return true;
+        }
+        if (
+          coachYearsOfExperience &&
+          yearsOfExperience &&
+          yearsOfExperience <= coachYearsOfExperience
+        ) {
+          return true;
+        }
+      } catch (e) {
+        console.warn(e);
+        return false;
+      }
     }
-    if (
-      specialization &&
-      coachSpecialization &&
-      specialization.find((special) => coachSpecialization.includes(special))
-    ) {
-      applicableSearchResults.push(coachData);
-    }
-
-    /**
-     * Zip code will need some more logic to check what's considered "close"
-     * for a zip code. Shouldn't be hard from the description below.
-     *
-     * ZIP Codes are numbered with the first digit representing a certain group
-     * of U.S. states, the second and third digits together representing a region
-     * in that group (or perhaps a large city) and the fourth and fifth digits
-     * representing a group of delivery addresses within that region.
-     */
-    if (coachZip && zip && coachZip.includes(zip)) {
-      applicableSearchResults.push(coachData);
-    }
-    if (
-      coachYearsOfExperience &&
-      yearsOfExperience &&
-      yearsOfExperience <= coachYearsOfExperience
-    ) {
-      applicableSearchResults.push(coachData);
-    }
-  });
+  ) as SearchField[];
 
   return applicableSearchResults;
 }

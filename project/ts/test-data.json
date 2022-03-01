@@ -1,0 +1,52 @@
+{
+  "coaches": [
+    {
+      "name": "Amy Sargent",
+      "specialization": [
+        "Family",
+        "Physical Health",
+        "Mental Health",
+        "Business",
+        "Life"
+      ],
+      "zip": "32808",
+      "yearsOfExperience": 10
+    },
+    {
+      "name": "Patty O'Furniture",
+      "specialization": ["Family"],
+      "zip": "98591",
+      "yearsOfExperience": 21
+    },
+    {
+      "name": "Olive Yew",
+      "specialization": ["Business", "Life"],
+      "zip": "67639",
+      "yearsOfExperience": 7
+    },
+    {
+      "name": "Aida Bugg",
+      "specialization": ["Life"],
+      "zip": "63250",
+      "yearsOfExperience": 1
+    },
+    {
+      "name": "Teri Dactyl",
+      "specialization": ["Physical Health", "Mental Health"],
+      "zip": "38380",
+      "yearsOfExperience": 9
+    },
+    {
+      "name": "Peg Legge",
+      "specialization": ["Business", "Job"],
+      "zip": "91954",
+      "yearsOfExperience": 3
+    },
+    {
+      "name": "Allie Grater",
+      "specialization": ["Business", "Life"],
+      "zip": "50558",
+      "yearsOfExperience": 4
+    }
+  ]
+}

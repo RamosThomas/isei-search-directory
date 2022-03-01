@@ -19,9 +19,9 @@ Search component for data.
 
 ### 2.) Run `npm ci`
 
-### 2.) Run `npm start`
+### 3.) Run `npm start`
 
-### 2.) Open browser of choice to `localhost:3000/`
+### 4.) Open browser of choice to `localhost:3000/`
 
 ---
 

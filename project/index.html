@@ -13,20 +13,62 @@
       </div>
       <div id="special">
         <label for="special">Enter your area of need: </label>
-        <input type="special" name="special" id="special" required />
+        <input type="radio" name="special" id="family" value="Family" /><label
+          for="family"
+          >Family</label
+        >
+        <input
+          type="radio"
+          name="special"
+          id="physical-health"
+          value="Physical Health"
+        /><label for="physical-health">Physical Health</label>
+        <input
+          type="radio"
+          name="special"
+          id="mental-health"
+          value="Mental Health"
+        /><label for="mental-health">Mental Health</label>
+        <input
+          type="radio"
+          name="special"
+          id="business"
+          value="Business"
+        /><label for="business">Business</label>
+        <input type="radio" name="special" id="job" value="Job" /><label
+          for="job"
+          >Job</label
+        >
+        <input type="radio" name="special" id="life" value="Life" /><label
+          for="life"
+          >Life</label
+        >
       </div>
       <div id="zip">
         <label for="zip">Enter your zip-code: </label>
-        <input type="number" name="zip" id="zip" required />
+        <input type="number" name="zip" id="zip-input" required />
       </div>
       <div id="exp">
-        <label for="exp">Enter your desired experience: </label>
-        <input type="number" name="exp" id="exp" required />
+        <label for="exp">Enter your desired #years of experience: </label>
+        <input type="number" name="exp" id="exp-input" required />
       </div>
       <div id="search">
         <input type="submit" value="Search" />
       </div>
     </form>
+
+    <!-- Search Labels -->
+    <div>
+      <h3>
+        <span>
+          Search Results
+          <h5 id="loading" style="display: none">Loading...</h5>
+        </span>
+      </h3>
+      <ul id="list">
+        <li>Test</li>
+      </ul>
+    </div>
     <script src="/js/bundle.js"></script>
   </body>
 </html>
