@@ -7,7 +7,7 @@ export default class ISEIForm {
   list: HTMLElement | null;
   loading: HTMLElement | null;
   name: HTMLInputElement;
-  radioButtonValue: string | undefined;
+  radioButtonValue: string[] | undefined;
   zip: HTMLInputElement;
   constructor() {
     this.exp = document.getElementById("exp-input") as HTMLInputElement;
@@ -15,9 +15,13 @@ export default class ISEIForm {
     this.list = document.getElementById("list");
     this.loading = document.getElementById("loading");
     this.name = document.getElementById("name-input") as HTMLInputElement;
-    this.radioButtonValue = (
-      document.querySelector("input[name=special]:checked") as HTMLInputElement
-    )?.value;
+    this.radioButtonValue = [
+      (
+        document.querySelector(
+          "input[name=special]:checked"
+        ) as HTMLInputElement
+      )?.value,
+    ];
     this.zip = document.getElementById("zip-input") as HTMLInputElement;
   }
 
@@ -58,23 +62,34 @@ export default class ISEIForm {
   }
 
   __init__() {
+    // Initialize list
+
+    this.updateListing({
+      name: undefined,
+      yearsOfExperience: undefined,
+      zip: undefined,
+      specialization: undefined,
+    });
+
     this.form?.addEventListener("keyup", (/** event: KeyboardEvent */) => {
       const params: SearchField = {
-        name: this.name?.value,
-        yearsOfExperience: parseInt(this.exp?.value),
-        zip: this.zip?.value,
-        specialization: [this.radioButtonValue],
+        name: this.name.value,
+        yearsOfExperience: parseInt(this.exp.value),
+        zip: this.zip.value,
+        specialization: this.radioButtonValue,
       };
 
       this.updateListing(params);
     });
 
-    this.form?.addEventListener("submit", (/** event: SubmitEvent */) => {
+    this.form?.addEventListener("submit", (event: SubmitEvent) => {
+      event.preventDefault();
+
       const params: SearchField = {
         name: this.name?.value,
         yearsOfExperience: parseInt(this.exp?.value),
         zip: this.zip?.value,
-        specialization: [this.radioButtonValue],
+        specialization: this.radioButtonValue,
       };
 
       this.updateListing(params);
@@ -87,13 +102,22 @@ export default class ISEIForm {
           const value: HTMLInputElement | null = document.querySelector(
             "input[name=special]:checked"
           );
-          this.radioButtonValue = value?.value;
+          value?.value === "all"
+            ? (this.radioButtonValue = [
+                "Family",
+                "Physical Health",
+                "Mental Health",
+                "Business",
+                "Life",
+                "Job",
+              ])
+            : (this.radioButtonValue = [value?.value as string]);
 
           const params: SearchField = {
-            name: this.name?.value,
-            yearsOfExperience: parseInt(this.exp?.value),
-            zip: this.zip?.value,
-            specialization: [this.radioButtonValue],
+            name: this.name.value,
+            yearsOfExperience: parseInt(this.exp.value),
+            zip: this.zip.value,
+            specialization: this.radioButtonValue,
           };
 
           this.updateListing(params);

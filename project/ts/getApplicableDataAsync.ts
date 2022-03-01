@@ -44,16 +44,16 @@ async function getApplicableDataAsync({
         if (
           coachName &&
           name &&
-          coachName.toLowerCase().includes(name.toLowerCase())
+          !coachName.toLowerCase().includes(name.toLowerCase())
         ) {
-          return true;
+          return false;
         }
         if (
           specialization &&
           coachSpecialization &&
-          coachSpecialization.some((r) => specialization.includes(r))
+          !coachSpecialization.some((r) => specialization.includes(r))
         ) {
-          return true;
+          return false;
         }
 
         /**
@@ -65,16 +65,17 @@ async function getApplicableDataAsync({
          * in that group (or perhaps a large city) and the fourth and fifth digits
          * representing a group of delivery addresses within that region.
          */
-        if (coachZip && zip && coachZip.includes(zip)) {
-          return true;
+        if (coachZip && zip && !coachZip.includes(zip)) {
+          return false;
         }
         if (
           coachYearsOfExperience &&
           yearsOfExperience &&
-          yearsOfExperience <= coachYearsOfExperience
+          !(yearsOfExperience <= coachYearsOfExperience)
         ) {
-          return true;
+          return false;
         }
+        return true;
       } catch (e) {
         console.warn(e);
         return false;

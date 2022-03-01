@@ -52,22 +52,23 @@ function getApplicableDataAsync(_a) {
                 try {
                     if (coachName &&
                         name &&
-                        coachName.toLowerCase().includes(name.toLowerCase())) {
-                        return true;
+                        !coachName.toLowerCase().includes(name.toLowerCase())) {
+                        return false;
                     }
                     if (specialization &&
                         coachSpecialization &&
-                        coachSpecialization.some(function (r) { return specialization.includes(r); })) {
-                        return true;
+                        !coachSpecialization.some(function (r) { return specialization.includes(r); })) {
+                        return false;
                     }
-                    if (coachZip && zip && coachZip.includes(zip)) {
-                        return true;
+                    if (coachZip && zip && !coachZip.includes(zip)) {
+                        return false;
                     }
                     if (coachYearsOfExperience &&
                         yearsOfExperience &&
-                        yearsOfExperience <= coachYearsOfExperience) {
-                        return true;
+                        !(yearsOfExperience <= coachYearsOfExperience)) {
+                        return false;
                     }
+                    return true;
                 }
                 catch (e) {
                     console.warn(e);

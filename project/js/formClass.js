@@ -45,7 +45,9 @@ var ISEIForm = (function () {
         this.list = document.getElementById("list");
         this.loading = document.getElementById("loading");
         this.name = document.getElementById("name-input");
-        this.radioButtonValue = (_a = document.querySelector("input[name=special]:checked")) === null || _a === void 0 ? void 0 : _a.value;
+        this.radioButtonValue = [
+            (_a = document.querySelector("input[name=special]:checked")) === null || _a === void 0 ? void 0 : _a.value,
+        ];
         this.zip = document.getElementById("zip-input");
     }
     ISEIForm.prototype.setLoading = function (state) {
@@ -97,23 +99,29 @@ var ISEIForm = (function () {
     ISEIForm.prototype.__init__ = function () {
         var _this = this;
         var _a, _b;
+        this.updateListing({
+            name: undefined,
+            yearsOfExperience: undefined,
+            zip: undefined,
+            specialization: undefined,
+        });
         (_a = this.form) === null || _a === void 0 ? void 0 : _a.addEventListener("keyup", function () {
-            var _a, _b, _c;
             var params = {
-                name: (_a = _this.name) === null || _a === void 0 ? void 0 : _a.value,
-                yearsOfExperience: parseInt((_b = _this.exp) === null || _b === void 0 ? void 0 : _b.value),
-                zip: (_c = _this.zip) === null || _c === void 0 ? void 0 : _c.value,
-                specialization: [_this.radioButtonValue],
+                name: _this.name.value,
+                yearsOfExperience: parseInt(_this.exp.value),
+                zip: _this.zip.value,
+                specialization: _this.radioButtonValue,
             };
             _this.updateListing(params);
         });
-        (_b = this.form) === null || _b === void 0 ? void 0 : _b.addEventListener("submit", function () {
+        (_b = this.form) === null || _b === void 0 ? void 0 : _b.addEventListener("submit", function (event) {
             var _a, _b, _c;
+            event.preventDefault();
             var params = {
                 name: (_a = _this.name) === null || _a === void 0 ? void 0 : _a.value,
                 yearsOfExperience: parseInt((_b = _this.exp) === null || _b === void 0 ? void 0 : _b.value),
                 zip: (_c = _this.zip) === null || _c === void 0 ? void 0 : _c.value,
-                specialization: [_this.radioButtonValue],
+                specialization: _this.radioButtonValue,
             };
             _this.updateListing(params);
         });
@@ -121,14 +129,22 @@ var ISEIForm = (function () {
             .querySelectorAll("input[name='special']")
             .forEach(function (input) {
             input.addEventListener("change", function () {
-                var _a, _b, _c;
                 var value = document.querySelector("input[name=special]:checked");
-                _this.radioButtonValue = value === null || value === void 0 ? void 0 : value.value;
+                (value === null || value === void 0 ? void 0 : value.value) === "all"
+                    ? (_this.radioButtonValue = [
+                        "Family",
+                        "Physical Health",
+                        "Mental Health",
+                        "Business",
+                        "Life",
+                        "Job",
+                    ])
+                    : (_this.radioButtonValue = [value === null || value === void 0 ? void 0 : value.value]);
                 var params = {
-                    name: (_a = _this.name) === null || _a === void 0 ? void 0 : _a.value,
-                    yearsOfExperience: parseInt((_b = _this.exp) === null || _b === void 0 ? void 0 : _b.value),
-                    zip: (_c = _this.zip) === null || _c === void 0 ? void 0 : _c.value,
-                    specialization: [_this.radioButtonValue],
+                    name: _this.name.value,
+                    yearsOfExperience: parseInt(_this.exp.value),
+                    zip: _this.zip.value,
+                    specialization: _this.radioButtonValue,
                 };
                 _this.updateListing(params);
             });
